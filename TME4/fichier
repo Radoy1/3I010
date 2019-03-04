@@ -1,0 +1,40 @@
+Introduction
+Un texte constitue bien sûr le matériel de base d'une analyse textuelle, mais - et c'est de cela dont il est question ici - sur le plan informatique un texte est stocké dans un fichier et est structuré selon les contraintes et besoins des logiciels informatiques. Pour pouvoir enregistrer et utiliser un texte sur un ordinateur on a dû établir toute une série de conventions techniques, que l'utilisateur peut en général ignorer, mais dans certains cas ils deviennent problématiques, en particulier si vous traitez des fichiers de sources très variés et parfois anciens (en termes informatiques bien sûr). L'objectif de ce document est de vous donner les informations de fond nécessaires pour comprendre ce que c'est une "texte" sur le plan informatique et les difficultés que cela peut créer dans la pratique.
+
+Textes et graphiques
+D'abord il est essentiel de distinguer le texte tel qu'il apparaît sur un écran ou sur une feuille de papier et sa forme informatique. Par exemple:
+
+Ceci est un texte.
+
+
+... sur le plan informatique, la première ligne "Ceci est un texte" est une chaîne de caractères que vous pouvez manipuler (vous pouvez par exemple y sélectionner quelques caractères, les copier et ensuite les coller dans n'importe quelle application qui peut traiter des textes (p. ex. Word, Notepad).
+
+Par contre la deuxième ligne n'est pas un texte sur le plan informatique, c'est un graphique... qui pour l'humain (occidental il faut le préciser) apparaît comme un texte; vous pouvez le copier/coller en tant que graphique, par exemple dans Word, mais vous ne pourriez pas corriger la faute orthographique à l'aide de Word, du simple fait que pour Word, il n'y a pas les caractères "xx", mais simplement des pixels noirs et blancs.
+
+Si vous passez un document dans un scanner pour le numériser, il sera enregistré sous forme graphique. Il est ensuite possible de tenter une conversion en texte en utilisant un logiciel de reconnaissance de caractères (OCR= Optical Character Recognition), reconnaissance qui ne sera que très rarement parfaite...
+
+Codes internes (représentation informatiques des caractères)
+Pour qu'un ordinateur puisse stocker des caractères, il utilise un code conventionnel (ANSI, ASCII ou le plus récent Unicode). Ceci est normalement pas problématique pour une utilisation normale, mais vous pouvez avoir des surprises quand vous traitez des anciens documents (où tout à coup les caractères accentués ne sont pas affichés correctement et si vous vous intéressez à des textes utilisant d'autres langues ou écritures. [Voir ici pour une explication détaillée]
+
+Traitements de textes etc.
+Le codage de "ceci" et de "ceci" ou encore de "ceci" est le même pour les 4 caractères, pourtant, ils sont présentés différemment. Ceci se fait en réalité grâce à la présence dans le fichiers de "caractères" supplémentaires ("code de contrôle") que le traitement de texte insère et qui indique que le texte qui va suivre doit être en gras ou en italique; et il faut bien sûr un code pour en indiquer la fin. C'est pour cette raison qu'un traitement de textes comme Word produit des fichiers spécifiques à ce logiciel, simplement parce que ce n'est que Word qui connaît tous les codes spéciaux qui contrôlent la présentation et la mise en page dans Word. C'est pour cette raison aussi qu'il est souvent nécessaire d'exporter le texte vers d'autres applications, c'est à dire de traduire les codes de contrôle de Word, si cela est possible ou de les ignorer dans le cas contraire.
+
+Dans notre optique d'analyse, il nous faut souvent préparer des documents qui ne contiennent que le texte sans tous les enrichissements; exporter signifie alors de tout supprimer, sauf le texte dans le sens ordinaire du terme; c'est d'ailleurs le seul qui est accepté par tous les logiciels, sans le moindre problème("standard minimal").
+
+Word, Excel etc. utilisent des formats de fichier propriétaires, donc seul l'application en question "sait" tout du format (codes de contrôle, etc) d'un fichier. Il est donc en général pas possible d'utiliser un fichier particulier tel quel dans une autre application, sans le transformer ("importer"). C'est de plus en plus fait automatiquement et l'utilisateur ne s'en rend plus compte, mais il y a néanmoins un "filtre" qui convertit, donc un logiciel... qui n'est pas toujours parfait. Notez d'ailleurs les logiciels évoluent et les éditeurs de logiciels changent parfois de façon importante le format interne au point de nécessiter une conversion. C'est par exemple le cas de Microsoft Word: Word 2007 a introduit un format interne complètement différent des versions antérieures et qui nécessite une conversion complète! Si vous examinez un fichier propriétaire avec par exemple dans un éditeur de texte simple, vous ne verrez que ces choses étranges.
+
+Dans l'univers de l'Internet, le format HTML est devenu très important; ceci et ceci si vous regardez derrière les coulisses se présente comme <i>ceci</i> et <strong>ceci</strongc>.
+
+Le format HTML est lisible pour l'humain; vous pouvez voir et comprendre <i>ceci</i>, mais les balises <i> ne font pas partie du texte dans le sens humain du terme, elle sont interprétées par votre navigateur comme une instruction de mettre le texte en italique. Pour analyser un texte, il faut bien sûr se débarrasser de ses balises, à moins que le logiciel que vous utilisez le fasse automatiquement.
+
+Notez que de plus en plus de logiciels n'utilisent plus un format propriétaire, mais XML (eXtensible Markup Language), un langage qui comme HTML utilise des balises < > définies selon les besoins de l'application. Les traitement des textes de dernière génération - également Word 2007 - utilisent de tels formats. A part le fait qu'il s'agit maintenant de fichiers textes ordinaires, la signification et l'interprétation des balises dépendent des applications. Bien qu'un format universel existe maintenant (ODF: Open Document Format, Norme ISO/IEC 26300, OASIS norme ISO), Microsoft a pour l'instant sa propre version qu'ils ont réussi de faire accepter comme norme ISO. ( OOXML "Open Office XML" ou OpenXML).
+
+Fichiers texte
+On appelle un fichier texte un fichier qui est lisible par n'importe quel logiciel, un fichier que vous pouvez examiner avec, par exemple, Notepad et vous n'y voyez que des caractères ordinaires.
+
+Attention: Sur le plan informatique, on désigne par "fichier texte" tout fichier qui ne contient que des éléments affichables, donc un fichier HTML est un fichier texte, car les balises HTML sont du texte (par exemple "<p>) par contre les fichiers textes que nous voulons analyser ne devraient contenir que des éléments textuels dans le sens ordinaire, non-informatique du terme et ne devraient pas contenir des éléments tels que des balises HTML qui sont destinées à une interprétation par un logiciel et non par un humain.
+
+Fins de lignes
+Mentionnons encore un dernier problème possible. Un fichier texte simple est un fichier qui comporte en général toute une série de lignes de texte... et le passage à une nouvelle ligne est provoqué par la présence d'un code qui est traduit par un passage visible à une nouvelle ligne. Ce code est bien sûr un code conventionnel. Même dans les documents le plus simples d'un certain âge informatique, vous trouvez des codes spéciaux, tels que les fins de lignes, mais aussi le caractère de tabulation (qui d'ailleurs peut aussi vous jouer des tours dans les transferts...) qui ne sont pas forcément interprétées de la même manière par les différents logiciels sur différentes plateformes informatiques. Ainsi pour terminer une ligne, certains système (Mac, PC, Unix ...) utilisent le code "CR" (=carriage return/retour du chariot) [chariot d'une machine à écrire!], d'autres "LF" (Line feed/Nouvelle ligne), d'autres une séquence CR/LF ou encore LF/CR. C'est rare que cela vous pose problème, du fait que le passage d'un système à l'autre implique en général une conversion automatique, mais il y a des exceptions....
+
+
